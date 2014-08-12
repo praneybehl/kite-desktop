@@ -1,0 +1,30 @@
+<template name="dashboard_images">
+  <div class="padded">
+    {{#if hasItem images}}
+      <div class="space-bottom">
+        {{#if $.Session.equals 'boot2dockerState' 'poweroff'}}
+          <a href="#" data-toggle="modal" data-target="#modal-create-image" class="btn btn-mac" disabled="disabled"><i class="fa fa-plus"></i> Create Image</a>
+        {{else}}
+          <a href="#" data-toggle="modal" data-target="#modal-create-image" class="btn btn-mac"><i class="fa fa-plus"></i> Create Image</a>
+        {{/if}}
+      </div>
+      <div class="images line-item-collection">
+        {{#each images}}
+          {{> dashboard_single_image}}
+        {{/each}}
+      </div>
+    {{else}}
+      <div class="empty-placeholder">
+        <div class="big-icon"><i class="fa fa-camera"></i></div>
+        <h4>There are no images yet.</h4>
+        {{#if $.Session.equals 'boot2dockerState' 'poweroff'}}
+          <a href="#" data-toggle="modal" data-target="#modal-create-image" class="btn btn-mac" disabled="disabled"><i class="fa fa-plus"></i> Create Image</a>
+        {{else}}
+          <a href="#" data-toggle="modal" data-target="#modal-create-image" class="btn btn-mac"><i class="fa fa-plus"></i> Create Image</a>
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+  {{> modal_create_app}}
+  {{> modal_create_image}}
+</template>

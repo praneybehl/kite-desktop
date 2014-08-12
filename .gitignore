@@ -1,0 +1,8 @@
+.DS_Store
+bundle
+bundle.tar.gz
+.demeteorized
+dist
+node_modules
+package
+osx-installer/mpkg/Kite.app

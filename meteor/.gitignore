@@ -1,0 +1,6 @@
+.DS_Store
+settings_dev.json
+mup.json
+env_secret.sh
+.demeteorized
+*.pyc

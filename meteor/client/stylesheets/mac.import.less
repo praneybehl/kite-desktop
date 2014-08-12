@@ -1,0 +1,133 @@
+.traffic-light() {
+  width: 12px;
+  height: 12px;
+  border-radius: 12px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.mac-window-options {
+  position: absolute;
+  top: 7px;
+  left: 10px;
+  .mac-close {
+    .traffic-light();
+  }
+  .mac-minimize {
+    .traffic-light();
+  }
+  .mac-maximize {
+    .traffic-light();
+  }
+}
+
+.mac-window-header {
+  text-align: center;
+  border-bottom: 1px solid @mac-dark-border;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  -webkit-app-region: drag;
+  border-top-left-radius: 4px;
+  .mac-gradient(@mac-dark-bg-1, @mac-dark-bg-2);
+  .box-shadow(~"0px 0px 1px 0px rgba(0,0,0,0.25)");
+  a {
+    cursor: default;
+    font-size: 13px;
+    color: @mac-header-text;
+    .text-emboss();
+    font-weight: 500;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .mac-window-header-options-left {
+    position: absolute;
+    float: left;
+    padding-left: 6px;
+    a {
+      .emboss-link(@mac-emboss-color);
+      .octicon {
+        cursor: pointer;
+        position: relative;
+        top: -1px;
+      }
+    }
+  }
+  .mac-window-header-options-right {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    a {
+      margin-left: 0.6em;
+      .emboss-link(@mac-emboss-color);
+      .octicon {
+        cursor: pointer;
+        position: relative;
+        top: -1px;
+      }
+    }
+  }
+}
+
+.btn-mac-styles() {
+  border-radius: @border-radius-base;
+  transition: background-color 0.2s, color 0.2s, width 0.2s, border-width 0.2s, border-color 0.2s;
+  .box-shadow(~"0px 0px 1px 0px rgba(0,0,0,0.25)");
+  .text-emboss();
+}
+
+.btn-mac {
+  .btn-mac-styles();
+  .mac-gradient(@btn-mac-bg-1, @btn-mac-bg-2);
+  border: 1px solid @btn-mac-border;
+  color: @btn-mac-color;
+  &:hover {
+    color: darken(@btn-mac-color, 15%);
+  }
+  &:active {
+    color: darken(@btn-mac-color, 15%);
+    .mac-gradient(@btn-mac-bg-2, @btn-mac-bg-1);
+  }
+}
+
+.btn-mac-positive {
+  .btn-mac-styles();
+  .mac-gradient(@btn-mac-positive-bg-1, @btn-mac-positive-bg-2);
+  border: 1px solid @btn-mac-positive-border;
+  color: @btn-mac-positive-color;
+  &:hover {
+    color: white;
+  }
+  &:active {
+    color: white;
+    .mac-gradient(@btn-mac-positive-bg-2, @btn-mac-positive-bg-1);
+  }
+}
+
+.btn-mac-negative {
+  .btn-mac-styles();
+  .mac-gradient(@btn-mac-negative-bg-1, @btn-mac-negative-bg-2);
+  border: 1px solid @btn-mac-negative-border;
+  color: @btn-mac-negative-color;
+  &:hover {
+    color: white;
+  }
+  &:active {
+    color: white;
+    .mac-gradient(@btn-mac-negative-bg-2, @btn-mac-negative-bg-1);
+  }
+}
+
+.btn-mac-chrome {
+  .btn-mac-styles();
+  .mac-gradient(@btn-mac-chrome-bg-1, @btn-mac-chrome-bg-2);
+  border: 1px solid @btn-mac-chrome-border;
+  color: @btn-mac-chrome-color;
+  &:hover {
+    color: black;
+  }
+  &:active {
+    color: black;
+    .mac-gradient(@btn-mac-chrome-bg-2, @btn-mac-chrome-bg-1);
+  }
+}

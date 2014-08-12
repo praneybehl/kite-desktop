@@ -1,0 +1,26 @@
+<template name="dashboard_layout">
+  {{setTitle}}
+  <div class="container">
+    <div class="dashboard">
+      {{> dashboard_menu}}
+      <div class="dashboard-body">
+        {{#if $eq currentDashboardPage 'apps'}}
+          <div class="mac-window-header"><a href="#"><i class="fa fa-cube"></i> Apps</a></div>
+        {{else}}
+          {{#if $eq currentDashboardPage 'images'}}
+            <div class="mac-window-header"><a href="#"><i class="fa fa-camera"></i> Images</a></div>
+          {{else}}
+            {{#if $eq currentDashboardPage 'settings'}}
+              <div class="mac-window-header"><a href="#"><i class="fa fa-gear"></i> Settings</a></div>
+            {{else}}
+              <div class="mac-window-header"><a href="#">Kite</a></div>
+            {{/if}}
+          {{/if}}
+        {{/if}}
+        <div class="content longer">
+          {{> yield}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

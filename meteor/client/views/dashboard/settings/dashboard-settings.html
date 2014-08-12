@@ -1,0 +1,39 @@
+  <template name="dashboard_settings">
+  <div class="section dashboard-settings">
+    <div class="left-section">
+      <h4>Boot2Docker VM</h4>
+      {{#if $.Session.equals 'boot2dockerState' 'poweroff'}}
+        <p class="help-block error">Please start Boot2Docker for Kite to work properly!</p>
+      {{else}}
+        <p class="help-block">All apps run in a Linux VM included with Kite. It needs to be turned to run apps.</p>
+      {{/if}}
+    </div>
+    <div class="right-section">
+      {{#if $.Session.equals 'boot2dockerState' 'poweroff'}}
+        <a class="btn btn-mac btn-start-boot2docker">Start Boot2Docker VM</a>
+      {{else}}
+        <a class="btn btn-mac-negative btn-stop-boot2docker">Stop Boot2Docker VM</a>
+        {{#if disk}}
+          <div class="utilization disk-utilization">
+            <div><strong>Disk Utilization</strong><span class="pull-right">{{disk.used_gb}}GB used of {{disk.total_gb}}GB</span></div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="width: {{disk.percent}}%;">
+                {{disk.percent}}%
+              </div>
+            </div>
+          </div>
+        {{/if}}
+        {{#if memory}}
+          <div class="utilization memory-utilization">
+            <div><strong>Memory Utilization</strong><span class="pull-right">{{memory.used_gb}}GB used of {{memory.total_gb}}GB</span></div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="width: {{memory.percent}}%;">
+                {{memory.percent}}%
+              </div>
+            </div>
+          </div>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</template>

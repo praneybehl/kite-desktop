@@ -1,0 +1,280 @@
+.line-item() {
+  height: 42px;
+  padding-top: 0.2em;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  border-bottom: 1px solid @mac-light-border;
+  .mac-gradient(@mac-light-bg-1, @mac-light-bg-2);
+  &:first-child {
+    border-top-left-radius: @border-radius-base;
+    border-top-right-radius: @border-radius-base;
+  }
+  &:last-child {
+    border-bottom-left-radius: @border-radius-base;
+    border-bottom-right-radius: @border-radius-base;
+    border-bottom: 0;
+  }
+  .options {
+    position: relative;
+    float: right;
+    top: -19px;
+    .btn-icon {
+      .emboss-link(@mac-emboss-color);
+      font-size: 20px;
+      margin-left: 0.4em;
+      .octicon {
+        font-size: 20px;
+        cursor: pointer;
+        position: relative;
+        top: -1px;
+      }
+    }
+  }
+  a.error {
+    color: @brand-negative;
+    &:hover {
+      color: @brand-negative;
+    }
+  }
+  a.name {
+    position: relative;
+    top: 10px;
+    color: @text-color;
+    &:hover {
+      color: lighten(@text-color, 10%);
+    }
+  }
+  small {
+    position: relative;
+    top: 10px;
+    margin-left: 1em;
+    a {
+      color: #777;
+    }
+  }
+  .status {
+    float: left;
+    font-size: 30px;
+    position: relative;
+    margin-right: 0.3em;
+  }
+}
+
+.line-item-collection {
+  border: 1px solid @mac-light-border;
+  border-radius: @border-radius-base;
+  .box-shadow(~"0px 0px 1px 0px rgba(0,0,0,0.25)");
+}
+
+.dashboard {
+  .make-row();
+  .dashboard-menu {
+    position: relative;
+    height: @window-height;
+    .make-xs-column(1);
+    .logo {
+      position: absolute;
+      margin-left: -2px;
+      bottom: 14px;
+      width: 38px;
+      height: 39px;
+    }
+    .nav-stacked {
+      margin-top: 40px;
+    }
+    .divider {
+      height: 1px;
+      background: rgba(0,0,0,0.1);
+      background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(0,0,0,0.05)), to(rgba(0,0,0,0.05)), color-stop(50%, rgba(0,0,0,0.12)));
+    }
+    .nav-pills > li > a {
+      i {
+        position: relative;
+        left: -11px;
+      }
+      font-size: 30px;
+      font-weight: 600;
+      border-radius: 0px;
+      color: rgba(255, 255, 255, 0.5);
+      &:hover, &:focus {
+        color: white;
+        background-color: transparent;
+      }
+    }
+    .nav-pills > li.active > a,
+    .nav-pills > li.active > a:hover,
+    .nav-pills > li.active > a:focus {
+      color: white;
+      background-color: transparent;
+    }
+  }
+  .dashboard-body {
+    .make-xs-column(11);
+    min-height: @window-height;
+    padding: 0;
+    background-color: @mac-background-color;
+    border-top-left-radius: 4px;
+    .box-shadow(~"-1px 0px 7px 0px rgba(0,0,0,0.25)");
+    .empty-placeholder {
+      padding-top: 6.5em;
+      padding-bottom: 2em;
+      text-align: center;
+      .text-emboss();
+      .big-icon i {
+        color: lighten(@text-color, 51%);
+        font-size: 200px;
+      }
+      h4 {
+        color: lighten(@text-color, 40%);
+        margin-bottom: 0.6em;
+      }
+    }
+    .header {
+      height: @dashboard-header-height;
+      .mac-gradient(@mac-light-bg-1, @mac-light-bg-2);
+      border-bottom: 1px solid @mac-light-border;
+      .box-shadow(~"0px 0px 1px rgba(0,0,0,0.1)");
+      text-align: center;
+      a {
+        display: inline-block;
+        width: @dashboard-header-height;
+        height: @dashboard-header-height;
+        .emboss-link(@mac-emboss-color);
+        padding-top: 1em;
+        &.active {
+          .mac-gradient(@mac-dark-bg-1, @mac-dark-bg-2);
+          color: darken(@mac-emboss-color, 15%);
+          border-bottom: 1px solid darken(@mac-light-border, 15%);
+        }
+        i {
+          font-size: 30px;
+        }
+        .text {
+          font-size: 12px;
+        }
+      }
+    }
+    .content {
+      .padded {
+        padding: 1.6em;
+      }
+      &.longer {
+        min-height: @dashboard-content-height + @dashboard-header-height;
+        max-height: @dashboard-content-height + @dashboard-header-height;
+      }
+      min-height: @dashboard-content-height;
+      max-height: @dashboard-content-height;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        width: 0 !important
+      }
+    }
+    .nav-tabs > li,
+    .nav-pills > li {
+      float: none;
+      display: inline-block;
+      *display: inline;
+      zoom: 1;
+    }
+    .nav-tabs, .nav-pills {
+      text-align: center;
+    }
+  }
+  .app {
+    .line-item();
+    .status {
+      top: 1px;
+      &.starting {
+        top: 3px;
+        font-size: 26px;
+      }
+    }
+  }
+  .image {
+    .line-item();
+    .status {
+      top: 5px;
+      &.building {
+        font-size: 26px;
+      }
+    }
+    .avatar {
+      float: left;
+      font-size: 26px;
+      position: relative;
+      top: 5px;
+      width: 26px;
+      height: 26px;
+      border-radius: 26px;
+      margin-right: 0.3em;
+    }
+  }
+}
+
+.logs {
+  background-color: @logs-background-color;
+  color: white;
+  padding: 1em;
+  font-family: monospace;
+  min-height: @dashboard-content-height;
+  h6 {
+    font-weight: 600;
+  }
+}
+
+.warning-badge {
+  color: white;
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  border-radius: 21px;
+  .mac-gradient(@btn-mac-negative-bg-1, @btn-mac-negative-bg-2);
+  border: 1px solid @btn-mac-negative-border;
+  .text-emboss();
+  i {
+    position: relative;
+    left: 7px;
+  }
+}
+
+.env-var-pair {
+  .make-row();
+  margin-bottom: 0.2em;
+  font-size: 12px;
+  .env-var-key {
+    .make-xs-column(5);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .env-var-value {
+    .make-xs-column(5);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .options {
+    .make-xs-column(2);
+  }
+}
+
+.dashboard-settings {
+  .utilization {
+    font-size: 12px;
+  }
+  .disk-utilization {
+    margin-top: 2em;
+  }
+  .progress {
+    font-weight: 600;
+    height: 24px;
+    border-radius: @border-radius-base;
+  }
+  .progress-bar {
+    padding-top: 2px;
+    .mac-gradient(@progress-bar-bg-1, @progress-bar-bg-2);
+    border-radius: @border-radius-base;
+  }
+}

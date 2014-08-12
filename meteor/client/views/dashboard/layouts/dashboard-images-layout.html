@@ -1,0 +1,31 @@
+<template name="dashboard_images_layout">
+  {{setTitle this.meta.name}}
+  <input id="imageId" type="hidden" value="{{this._id}}">
+  <div class="container">
+    <div class="dashboard">
+      {{> dashboard_menu}}
+      <div class="dashboard-body">
+        <div class="mac-window-header">
+          <div class="mac-window-header-options-left">
+            <a href="/images"><i class="fa fa-arrow-circle-left"></i> Back</a>
+          </div>
+          <a href="#"><i class="fa fa-camera"></i> Images &raquo; {{this.meta.name}}</a>
+          <div class="mac-window-header-options-right">
+            {{#if $eq status 'READY'}}
+              <a href="#" class="btn-create-app" data-toggle="tooltip" data-placement="bottom" title="Create App"><i class="fa fa-plus"></i></a>
+            {{/if}}
+            <a href="#" class="btn-folder" data-toggle="tooltip" data-placement="bottom" title="Folder"><i class="fa fa-folder-open"></i></a>
+          </div>
+        </div>
+        <div class="header">
+          <a href="/images/{{this._id}}/logs" class="{{activeDashboardSubMenuItem 'logs'}}"><i class="fa fa-file-text-o"></i><div class="text">Logs</div></a>
+          <a href="/images/{{this._id}}/settings" class="{{activeDashboardSubMenuItem 'settings'}}"><i class="fa fa-gear"></i><div class="text">Settings</div></a>
+        </div>
+        <div class="content">
+          {{> yield}}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{> modal_create_app}}
+</template>

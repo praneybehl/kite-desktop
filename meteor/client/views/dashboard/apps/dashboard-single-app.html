@@ -1,0 +1,34 @@
+<template name="dashboard_single_app">
+  <div class="app">
+    <h5>
+      {{#if $eq status 'READY'}}
+        <span style="color: #7AD98A;" class="status"><i class="fa fa-circle-o"></i></span>
+      {{else}}
+        {{#if $eq status 'STARTING'}}
+          <span style="color: #D6D6D6;" class="status starting"><i class="fa fa-circle-o-notch fa-spin"></i></span>
+        {{else}}
+          {{#if $eq status 'ERROR'}}
+            <span style="color: #D97A7A;" class="status"><i class="fa fa-circle-o"></i></span>
+          {{else}}
+            <span style="color: #D6D6D6;" class="status"><i class="fa fa-circle-o"></i></span>
+          {{/if}}
+        {{/if}}
+      {{/if}}
+      <a href="/apps/{{name}}" class="name">{{name}}</a>
+      <small><a href="/images/{{image._id}}">{{image.meta.name}}</a></small>
+    </h5>
+    <div class="options">
+      {{#if $eq status 'READY'}}
+        {{#if url}}
+          <a href="{{url}}" class="btn-icon btn-view" target="_blank" data-toggle="tooltip" data-placement="bottom" title="View App"><i class="fa fa-eye"></i></a>
+        {{/if}}
+        {{#if sshUrl}}
+          <a href="{{sshUrl}}" class="btn-icon btn-ssh" data-toggle="tooltip" data-placement="bottom" title="SSH"><span class="octicon octicon-terminal"></span></a>
+        {{/if}}
+      {{/if}}
+      <a href="#" class="btn-icon btn-folder" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Folder"><i class="fa fa-folder-open"></i></a>
+      <a href="#" class="btn-icon btn-restart" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Restart"><i class="fa fa-refresh"></i></a>
+      <a href="/apps/{{name}}/settings" class="btn-icon" data-toggle="tooltip" data-placement="bottom" title="Settings"><i class="fa fa-gear"></i></a>
+    </div>
+  </div>
+</template>

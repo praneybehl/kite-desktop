@@ -1,0 +1,36 @@
+<template name="dashboard_single_image">
+  <div class="image">
+    <h5>
+      {{#if $eq status 'READY'}}
+        {{#if logoPath}}
+          <img src="file://{{logoPath}}" class="avatar">
+        {{else}}
+          <img src="/image-placeholder.png" class="avatar">
+        {{/if}}
+      {{else}}
+        {{#if $eq status 'BUILDING'}}
+          <span style="color: #D6D6D6;" class="status building"><i class="fa fa-circle-o-notch fa-spin"></i></span>
+        {{else}}
+          {{#if $eq status 'ERROR'}}
+            <span style="color: #D97A7A;" class="status"><i class="fa fa-circle-o"></i></span>
+          {{else}}
+            <span style="color: #D6D6D6;" class="status"><i class="fa fa-circle-o"></i></span>
+          {{/if}}
+        {{/if}}
+      {{/if}}
+      <a href="/images/{{_id}}" class="name">{{meta.name}}</a>
+      {{#if $eq status 'BUILDING'}}
+        <small>Creating image may take a couple minutes...</small>
+      {{else}}
+        <small>Created {{timeSince createdAt}}</small>
+      {{/if}}
+    </h5>
+    <div class="options">
+      {{#if $eq status 'READY'}}
+        <a href="#" class="btn-icon btn-create-app" data-toggle="tooltip" data-placement="bottom" title="Create App"><i class="fa fa-plus"></i></a>
+      {{/if}}
+      <a href="#" class="btn-icon btn-folder" data-toggle="tooltip" data-placement="bottom" title="Folder"><i class="fa fa-folder-open"></i></a>
+      <a href="/images/{{_id}}/settings" class="btn-icon" data-toggle="tooltip" data-placement="bottom" title="Settings"><i class="fa fa-gear"> </i></a>
+    </div>
+  </div>
+</template>

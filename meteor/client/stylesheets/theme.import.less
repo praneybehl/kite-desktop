@@ -1,0 +1,265 @@
+//
+// Base
+// --------------------------------------------------
+
+html, body {
+  height: 100%;
+  font-family: 'Lucida Grande', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  .mac-gradient(@dashboard-menu-bg-1, @dashboard-menu-bg-2);
+  font-size: @font-size-base;
+  min-width: @window-width;
+  height: @window-height;
+  .no-select();
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  font-weight: 300;
+  small {
+    margin-left: 0.6em;
+  }
+}
+
+.container {
+  width: @window-width;
+  min-width: @window-width;
+  max-width: @window-width;
+}
+
+//
+// Buttons
+// --------------------------------------------------
+
+.btn-styles(@btn-color: #555) {
+  border-radius: @border-radius-base;
+  background-color: @btn-color;
+  .reset-filter(); // Disable gradients for IE9 because filter bleeds through rounded corners
+  border-width: 1px;
+  transition: background-color 0.2s, color 0.2s, width 0.2s, border-width 0.2s, border-color 0.2s;
+}
+
+.btn {
+  font-weight: 600;
+  outline: none;
+  &,
+  &:active,
+  &.active {
+    &:focus {
+      outline: none;
+    }
+  }
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+  &:active,
+  &.active {
+    outline: none;
+    .box-shadow(~"inset 0 0 0 rgba(0,0,0,.075)");
+  }
+}
+
+button {
+  &.btn {
+    font-weight: 400;
+  }
+}
+
+.btn-default {
+  .btn-styles(@btn-default-bg);
+  border-color: @btn-default-border;
+  &:hover,
+  &:focus  {
+    background-color: darken(@btn-default-bg, 2%);
+    border-color: darken(@btn-default-border, 10%);
+    color: @btn-default-color;
+  }
+  &:active,
+  &.active {
+    background-color: darken(@btn-default-bg, 2%);
+    border-color: darken(@btn-default-border, 10%);
+    color: @btn-default-color;
+  }
+}
+
+.btn-action {
+  .btn-styles(@btn-action-bg);
+  color: @btn-action-color;
+  border-color: @btn-action-border;
+  &:hover,
+  &:focus  {
+    background-color: lighten(@btn-action-bg, 2%);
+    border-color: @btn-action-border;
+    color: @btn-action-color;
+  }
+  &:active,
+  &.active {
+    background-color: darken(@btn-action-bg, 2%);
+    border-color: @btn-action-border;
+    color: @btn-action-color;
+  }
+}
+
+.btn-positive {
+  .btn-styles(@btn-positive-bg);
+  color: @btn-positive-color;
+  border-color: @btn-positive-border;
+  &:hover,
+  &:focus  {
+    background-color: darken(@btn-positive-bg, 2%);
+    border-color: darken(@btn-positive-border, 2%);
+    color: @btn-positive-color;
+  }
+  &:active,
+  &.active {
+    background-color: darken(@btn-positive-bg, 4%);
+    border-color: darken(@btn-positive-border, 4%);
+    color: @btn-positive-color;
+  }
+}
+
+.btn-negative {
+  .btn-styles(@btn-negative-bg);
+  color: @btn-negative-color;
+  border-color: @btn-negative-border;
+  &:hover,
+  &:focus  {
+    background-color: lighten(@btn-negative-bg, 2%);
+    border-color: @btn-negative-border;
+    color: @btn-negative-color;
+  }
+  &:active,
+  &.active {
+    background-color: darken(@btn-negative-bg, 2%);
+    border-color: darken(@btn-negative-border, 2%);
+    color: @btn-negative-color;
+  }
+}
+
+//
+// Forms
+// --------------------------------------------------
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  border-color: #BBB;
+  .box-shadow(~"inset 0 0 5px rgba(0,0,0,.15), 0 0 0 @{brand-action}");
+  .has-error {
+    .form-control {
+      .box-shadow(~"inset 0 0 5px rgba(0,0,0,.15), 0 0 0 @{brand-negative}");
+    }
+  }
+  .has-success {
+    .form-control {
+      .box-shadow(~"inset 0 0 5px rgba(0,0,0,.15), 0 0 0 @{brand-positive}");
+    }
+  }
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: @brand-action;
+  outline: none;
+  .box-shadow(~"inset 0 0 5px rgba(0,0,0,.3), 0 0 0 @{brand-action}");
+}
+
+.has-error {
+  .form-control:focus {
+    .box-shadow(~"inset 0 0 5px rgba(0,0,0,.3), 0 0 0 @{brand-negative}");
+  }
+}
+
+.has-success {
+  .form-control:focus {
+    .box-shadow(~"inset 0 0 5px rgba(0,0,0,.3), 0 0 0 @{brand-positive}");
+  }
+}
+
+.help-block {
+  font-size: 12px;
+}
+
+//
+// Modal
+// --------------------------------------------------
+
+.modal-header {
+  padding: 8px;
+  .mac-gradient(@mac-dark-bg-1, @mac-dark-bg-2);
+  border-top-left-radius: @border-radius-base;
+  border-top-right-radius:@border-radius-base;
+  border-bottom: 1px solid @mac-dark-border;
+  font-size: 16px;
+  color: @mac-emboss-color;
+  .text-emboss();
+  text-align: center;
+  h5 {
+    font-weight: 600;
+  }
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 8px;
+    font-size: 18px;
+    .emboss-link(@mac-emboss-color);
+    opacity: 1;
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.modal-body {
+  background-color: @mac-background-color;
+}
+
+.modal-footer {
+  .mac-gradient(@mac-dark-bg-1, @mac-dark-bg-2);
+  border-bottom-left-radius: @border-radius-base;
+  border-bottom-right-radius: @border-radius-base;
+  border-top: 1px solid @mac-dark-border;
+}
+
+//
+// Misc
+// --------------------------------------------------
+
+::selection {
+  color: white;
+  background-color: @selection-color;
+}
+
+::-moz-selection {
+  color: white;
+  background-color: @selection-color;
+}
