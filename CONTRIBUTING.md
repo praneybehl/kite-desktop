@@ -32,9 +32,7 @@ and [Submitting Pull Requests](#submitting-pull-requests), but please respect th
 restrictions:
 
 * Please **do not** use the issue tracker for personal support requests. Our
-[HipChat room](https://www.hipchat.com/gXK7pSepE) or
-[IRC](https://github.com/usekite/kite-desktop/blob/master/README.md#community)
-are better places to get help.
+[HipChat room](https://www.hipchat.com/gXK7pSepE) is a better place to get help.
 
 * Please **do not** derail or troll issues. Keep the discussion on topic and
   respect the opinions of others.
