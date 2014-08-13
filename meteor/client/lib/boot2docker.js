@@ -98,7 +98,8 @@ initBoot2Docker = function (callback) {
 };
 
 startBoot2Docker = function (callback) {
-  initBoot2Docker(function (err, stdout) {
+  initBoot2Docker(function (err) {
+    if (err) { console.log(err); }
     exec('boot2docker --vm=boot2docker-kite-vm up', function (err, stdout) {
       if (err) {
         callback(err, null);

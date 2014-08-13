@@ -169,6 +169,7 @@
       "getBoot2DockerDiskUsage": true,
       "getBoot2DockerMemoryUsage": true,
       "updateBoot2DockerInfo": true,
+      "initBoot2Docker": true,
       "startBoot2Docker": true,
       "stopBoot2Docker": true,
       "getAppLogs": true,
@@ -176,6 +177,7 @@
       "restartApp": true,
       "purgeKnownHosts": true,
       "deleteFolder": true,
+      "watchKiteProxy": true,
 
       // Forms
       "showFormErrors": true,

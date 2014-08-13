@@ -93,6 +93,7 @@ Meteor.call('getDockerHost', function (err, host) {
 });
 
 Meteor.setInterval(function () {
+  Meteor.call('watchKiteProxy');
   Meteor.call('watchApps');
   Meteor.call('restartApps');
 }, 5000);
