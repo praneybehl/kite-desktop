@@ -164,7 +164,6 @@
       "getHomePath": true,
       "hasDockerfile": true,
       "getKiteJSON": true,
-      "saveLogo": true,
       "getBoot2DockerState": true,
       "getBoot2DockerInfo": true,
       "getBoot2DockerDiskUsage": true,
@@ -181,6 +180,7 @@
       "watchKiteProxy": true,
       "watchKiteDNS": true,
       "loadKiteVolumes": true,
+      "saveImageFolder": true,
 
       // Forms
       "showFormErrors": true,
@@ -199,7 +199,7 @@
       // Constants
       "KITE_PATH": true,
       "KITE_TAR_PATH": true,
-      "KITE_LOGO_PATH": true
+      "KITE_IMAGES_PATH": true
 
     }
 }

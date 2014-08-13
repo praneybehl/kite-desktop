@@ -1,6 +1,6 @@
 KITE_PATH = path.join(getHomePath(), 'Kite');
 KITE_TAR_PATH = path.join(KITE_PATH, '.tar');
-KITE_LOGO_PATH = path.join(KITE_PATH, '.logo');
+KITE_IMAGES_PATH = path.join(KITE_PATH, '.images');
 
 if (!fs.existsSync(KITE_PATH)) {
   console.log('Created Kite directory.');
@@ -16,9 +16,9 @@ if (!fs.existsSync(KITE_TAR_PATH)) {
   });
 }
 
-if (!fs.existsSync(KITE_LOGO_PATH)) {
-  console.log('Created Kite .logo directory.');
-  fs.mkdirSync(KITE_LOGO_PATH, function (err) {
+if (!fs.existsSync(KITE_IMAGES_PATH)) {
+  console.log('Created Kite .images directory.');
+  fs.mkdirSync(KITE_IMAGES_PATH, function (err) {
     if (err) { throw err; }
   });
 }
@@ -41,21 +41,22 @@ loadKiteVolumes = function (directory, appName) {
       if (err) {
         return console.error(err);
       }
-      console.log('Moved volume: ' + appName);
+      console.log('Copied volumes for: ' + appName);
     });
   }
 };
 
-saveLogo = function (directory, logoPath, imageId) {
-  var originalPath = path.join(directory, logoPath);
-  var extension = path.extname(logoPath);
-  var newPath = path.join(KITE_LOGO_PATH, imageId + extension);
-  fs.createReadStream(originalPath).pipe(fs.createWriteStream(newPath));
-  Fiber(function () {
-    Images.update(imageId, {
-      $set: {
-        logoPath: newPath
-      }
+saveImageFolder = function (directory, imageId) {
+  var destinationPath = path.join(KITE_IMAGES_PATH, imageId);
+  if (!fs.existsSync(destinationPath)) {
+    fs.mkdirSync(destinationPath, function (err) {
+      if (err) { throw err; }
     });
-  }).run();
+    ncp(directory, destinationPath, function (err) {
+      if (err) {
+        return console.error(err);
+      }
+      console.log('Copied image folder for: ' + imageId);
+    });
+  }
 };
