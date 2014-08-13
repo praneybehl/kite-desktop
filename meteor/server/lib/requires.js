@@ -6,3 +6,4 @@ path = Meteor.require('path');
 exec = Meteor.require('child_process').exec;
 Fiber = Meteor.require('fibers');
 keygen = Meteor.require('ssh-keygen');
+ncp = Meteor.require('ncp');

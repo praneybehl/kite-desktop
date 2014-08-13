@@ -33,6 +33,19 @@ getKiteJSON = function (directory) {
   }
 };
 
+loadKiteVolumes = function (directory, appName) {
+  var KITE_VOLUMES_PATH = path.join(directory, 'volumes');
+  if (fs.existsSync(KITE_VOLUMES_PATH)) {
+    var destinationPath = path.join(KITE_PATH, appName);
+    ncp(KITE_VOLUMES_PATH, destinationPath, function (err) {
+      if (err) {
+        return console.error(err);
+      }
+      console.log('Moved volume: ' + appName);
+    });
+  }
+};
+
 saveLogo = function (directory, logoPath, imageId) {
   var originalPath = path.join(directory, logoPath);
   var extension = path.extname(logoPath);

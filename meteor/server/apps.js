@@ -169,7 +169,7 @@ Meteor.methods({
         $set: {
           'config.APP_ID': appId,
           'config.SSH_KEY': sshKey,
-          'config.VIRTUAL_HOST': appObj.name + '.local',
+          'config.VIRTUAL_HOST': appObj.name + '.dev',
           path: appPath
         }
       });
@@ -181,6 +181,7 @@ Meteor.methods({
           }
         });
       }
+      loadKiteVolumes(image.path, appObj.name);
       var app = Apps.findOne(appId);
       runApp(app, function (err, data) {
         if (err) { throw err; }

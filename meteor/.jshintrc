@@ -139,6 +139,7 @@
       "gui": true,
       "win": true,
       "keygen": true,
+      "ncp": true,
 
       // Collections
       "SimpleSchema": false,
@@ -178,6 +179,8 @@
       "purgeKnownHosts": true,
       "deleteFolder": true,
       "watchKiteProxy": true,
+      "watchKiteDNS": true,
+      "loadKiteVolumes": true,
 
       // Forms
       "showFormErrors": true,

@@ -235,9 +235,27 @@ watchKiteProxy = function () {
   }
 };
 
+watchKiteDNS = function () {
+  var kiteDNSContainer = docker.getContainer('kite-dns');
+  if (kiteDNSContainer) {
+    kiteDNSContainer.inspect(function (err, data) {
+      if (err) { console.log(err); }
+      if (data && !data.State.Running) {
+        kiteDNSContainer.start(function (err) {
+          if (err) { console.log(err); }
+          console.log('Restarted Kite DNS.');
+        });
+      }
+    });
+  }
+};
+
 Meteor.methods({
   watchKiteProxy: function () {
     watchKiteProxy();
+  },
+  watchKiteDNS: function () {
+    watchKiteDNS();
   },
   getDockerHost: function () {
     return process.env.DOCKER_HOST;
