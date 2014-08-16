@@ -1,6 +1,6 @@
-# Contributing to Kite
+# Contributing to Kitematic
 
-Thank you so much for contributing and supporting the Kite project!
+Thank you so much for contributing and supporting the Kitematic project!
 
 Before you file a bug or pull request, please take a comment to read the
 following guidelines for more details on how to file a bug report or submit a
@@ -26,7 +26,7 @@ patches and features.
 
 ## Using the Issue Tracker
 
-The [Issue Tracker](https://github.com/usekite/kite-desktop/issues) is
+The [Issue Tracker](https://github.com/kitematic/kitematic/issues) is
 the preferred channel for [Bug Reports](#bug-reports), [Features Requests](#feature-requests)
 and [Submitting Pull Requests](#submitting-pull-requests), but please respect the following
 restrictions:
@@ -85,7 +85,7 @@ Example:
 
 Feature requests are welcome. But take a moment to find out whether your idea
 fits with the scope and aims of the project. A roadmap of the project is kept
-on the [Kite Roadmap](https://trello.com/b/xea5AHRk/kite-roadmap) Trello board.
+on the [Kitematic Roadmap](https://trello.com/b/xea5AHRk/kitematic-roadmap) Trello board.
 It's up to *you* to make a strong case to convince the project's developers of
 the merits of this feature. Please provide as much detail and context as possible.
 
@@ -114,11 +114,11 @@ included in the project:
 
  ```bash
  # Clone your fork of the repo into the current directory
- git clone https://github.com/<your-username>/kite.git
+ git clone https://github.com/<your-username>/kitematic.git
  # Navigate to the newly cloned directory
- cd kite
+ cd kitematic
  # Assign the original repo to a remote called "upstream"
- git remote add upstream https://github.com/usekite/kite-desktop.git
+ git remote add upstream https://github.com/kitematic/kitematic.git
  ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
@@ -190,32 +190,6 @@ standards. Add any exceptions to global variables at the bottom of the
 
 
 
-## Project Breakdown
-
-Within the project you'll see the following file structure. We'll give
-a short description on the important directories and files:
-
-```
-kite/
-├── bin/         			# Various binaries packaged into Kite (node, mongodb, node-webkit)
-├── meteor/      			# The Application
-│  	│   ├── packages  # Meteor packages used by the project
-│		│   └── release   # Version of Meteor used by the project
-│		├── client/       # All code that runs in node-webkit
-│		├── collections/  # Defines the Mongo collections
-│		├── packages/     # Installed packages for the project
-│		├── public/       # Images exposed to the public
-│		├── server/       # All code that runs on the meteor server
-│		├── .jshintrc     # Defines Javascript code guidelines
-│		├── jshint.sh     # Runs Javascript code check
-│		├── packages.json # NPM packages to be installed for the project
-│		└── smart.json    # Meteorite packages used by the project
-├── osx-installer/    # Packaging scripts for Kite (based on boot2docker)
-├── resources/        # Various resources used in the final Kite packages
-└── scripts/          # Scripts to automate running & packaging Kite
-```
-
-
 ## License
 
-By contributing your code, you agree to license your contribution under the [AGPL license](https://github.com/usekite/kite-desktop/blob/master/LICENSE).
+By contributing your code, you agree to license your contribution under the [AGPL license](https://github.com/kitematic/kitematic/blob/master/LICENSE).

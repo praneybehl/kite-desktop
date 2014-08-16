@@ -99,7 +99,7 @@ start(function (url, child, mongoChild) {
 
   child.stdout.on('data', function (data) {
     process.stdout.write(data);
-    if (!windowCreated && data.indexOf('Kite started.') > -1) {
+    if (!windowCreated && data.indexOf('Kitematic started.') > -1) {
       windowCreated = true;
       var gui = require('nw.gui');
       var mainWindow = gui.Window.get();
