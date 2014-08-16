@@ -163,7 +163,7 @@
       "deleteImage": true,
       "getHomePath": true,
       "hasDockerfile": true,
-      "getKiteJSON": true,
+      "getImageJSON": true,
       "getBoot2DockerState": true,
       "getBoot2DockerInfo": true,
       "getBoot2DockerDiskUsage": true,

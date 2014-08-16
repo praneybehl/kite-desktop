@@ -4,7 +4,7 @@ try {
   gui.App.clearCache();
   win = gui.Window.get();
   var nativeMenuBar = new gui.Menu({ type: "menubar" });
-  nativeMenuBar.createMacBuiltin("Kite");
+  nativeMenuBar.createMacBuiltin("Kitematic");
   win.menu = nativeMenuBar;
 } catch (e) {
   console.log(e);
@@ -22,9 +22,9 @@ Handlebars.registerHelper('arrayify', function (obj) {
 
 Handlebars.registerHelper('setTitle', function (title) {
   if (title) {
-    document.title = title + ' | Kite';
+    document.title = title + ' | Kitematic';
   } else {
-    document.title = 'Kite';
+    document.title = 'Kitematic';
   }
 });
 

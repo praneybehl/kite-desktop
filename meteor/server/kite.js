@@ -1,4 +1,4 @@
-KITE_PATH = path.join(getHomePath(), 'Kite');
+KITE_PATH = path.join(getHomePath(), 'Kitematic');
 KITE_TAR_PATH = path.join(KITE_PATH, '.tar');
 KITE_IMAGES_PATH = path.join(KITE_PATH, '.images');
 
@@ -23,8 +23,8 @@ if (!fs.existsSync(KITE_IMAGES_PATH)) {
   });
 }
 
-getKiteJSON = function (directory) {
-  var KITE_JSON_PATH = path.join(directory, 'kite.json');
+getImageJSON = function (directory) {
+  var KITE_JSON_PATH = path.join(directory, 'image.json');
   if (fs.existsSync(KITE_JSON_PATH)) {
     var data = fs.readFileSync(KITE_JSON_PATH, 'utf8');
     return JSON.parse(data);

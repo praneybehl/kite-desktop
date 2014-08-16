@@ -5,7 +5,7 @@ Meteor.methods({
       status: 'BUILDING',
       buildLogs: []
     };
-    var kiteJSON = getKiteJSON(directory);
+    var kiteJSON = getImageJSON(directory);
     if (kiteJSON) {
       imageObj.meta = kiteJSON;
       if (!imageObj.meta.name) {

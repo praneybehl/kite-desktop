@@ -66,7 +66,7 @@ Apps.helpers({
       if (dockerHost) {
         dockerHost = dockerHost.replace('http://', '');
       }
-      return 'ssh://kite@' + dockerHost + ':' + this.docker.NetworkSettings.Ports['22/tcp'][0].HostPort;
+      return 'ssh://user@' + dockerHost + ':' + this.docker.NetworkSettings.Ports['22/tcp'][0].HostPort;
     } else {
       return null;
     }
