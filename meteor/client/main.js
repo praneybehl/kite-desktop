@@ -3,13 +3,8 @@ try {
   gui = require('nw.gui');
   gui.App.clearCache();
   win = gui.Window.get();
-<<<<<<< HEAD
   var nativeMenuBar = new gui.Menu({ type: 'menubar' });
   nativeMenuBar.createMacBuiltin('Kitematic');
-=======
-  var nativeMenuBar = new gui.Menu({ type: "menubar" });
-  nativeMenuBar.createMacBuiltin("Kitematic");
->>>>>>> 6a56d39bb6f6691ce5c74cc2a5588b111f544cd6
   win.menu = nativeMenuBar;
 } catch (e) {
   console.log(e);
