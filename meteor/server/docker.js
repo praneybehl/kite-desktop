@@ -221,7 +221,43 @@ deleteImage = function (image, callback) {
   });
 };
 
+watchKiteProxy = function () {
+  var kiteProxyContainer = docker.getContainer('kite-proxy');
+  if (kiteProxyContainer) {
+    kiteProxyContainer.inspect(function (err, data) {
+      if (err) { console.log(err); }
+      if (data && !data.State.Running) {
+        kiteProxyContainer.start(function (err) {
+          if (err) { console.log(err); }
+          console.log('Restarted Kite proxy.');
+        });
+      }
+    });
+  }
+};
+
+watchKiteDNS = function () {
+  var kiteDNSContainer = docker.getContainer('kite-dns');
+  if (kiteDNSContainer) {
+    kiteDNSContainer.inspect(function (err, data) {
+      if (err) { console.log(err); }
+      if (data && !data.State.Running) {
+        kiteDNSContainer.start(function (err) {
+          if (err) { console.log(err); }
+          console.log('Restarted Kite DNS.');
+        });
+      }
+    });
+  }
+};
+
 Meteor.methods({
+  watchKiteProxy: function () {
+    watchKiteProxy();
+  },
+  watchKiteDNS: function () {
+    watchKiteDNS();
+  },
   getDockerHost: function () {
     return process.env.DOCKER_HOST;
   }

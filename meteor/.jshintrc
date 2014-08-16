@@ -139,6 +139,7 @@
       "gui": true,
       "win": true,
       "keygen": true,
+      "ncp": true,
 
       // Collections
       "SimpleSchema": false,
@@ -162,13 +163,13 @@
       "deleteImage": true,
       "getHomePath": true,
       "hasDockerfile": true,
-      "getKiteJSON": true,
-      "saveLogo": true,
+      "getImageJSON": true,
       "getBoot2DockerState": true,
       "getBoot2DockerInfo": true,
       "getBoot2DockerDiskUsage": true,
       "getBoot2DockerMemoryUsage": true,
       "updateBoot2DockerInfo": true,
+      "initBoot2Docker": true,
       "startBoot2Docker": true,
       "stopBoot2Docker": true,
       "getAppLogs": true,
@@ -176,6 +177,10 @@
       "restartApp": true,
       "purgeKnownHosts": true,
       "deleteFolder": true,
+      "watchKiteProxy": true,
+      "watchKiteDNS": true,
+      "loadKiteVolumes": true,
+      "saveImageFolder": true,
 
       // Forms
       "showFormErrors": true,
@@ -194,7 +199,7 @@
       // Constants
       "KITE_PATH": true,
       "KITE_TAR_PATH": true,
-      "KITE_LOGO_PATH": true
+      "KITE_IMAGES_PATH": true
 
     }
 }

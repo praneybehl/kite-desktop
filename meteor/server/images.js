@@ -3,10 +3,9 @@ Meteor.methods({
     this.unblock();
     var imageObj = {
       status: 'BUILDING',
-      buildLogs: [],
-      path: directory
+      buildLogs: []
     };
-    var kiteJSON = getKiteJSON(directory);
+    var kiteJSON = getImageJSON(directory);
     if (kiteJSON) {
       imageObj.meta = kiteJSON;
       if (!imageObj.meta.name) {
@@ -18,8 +17,19 @@ Meteor.methods({
       };
     }
     var imageId = Images.insert(imageObj);
+    saveImageFolder(directory, imageId);
+    var imagePath = path.join(KITE_IMAGES_PATH, imageId);
+    Images.update(imageId, {
+      $set: {
+        path: imagePath
+      }
+    });
     if (imageObj.meta.logo) {
-      saveLogo(directory, imageObj.meta.logo, imageId);
+      Images.update(imageId, {
+        $set: {
+          logoPath: path.join(imagePath, imageObj.meta.logo)
+        }
+      });
     }
     var image = Images.findOne(imageId);
     buildImage(image, function (err, data) {
@@ -49,13 +59,7 @@ Meteor.methods({
     if (!app) {
       deleteImage(image, function (err) {
         if (err) { console.log(err); }
-        if (image.logoPath) {
-          try {
-            fs.unlinkSync(image.logoPath);
-          } catch (exception) {
-            console.log(exception);
-          }
-        }
+        deleteFolder(image.path);
         Fiber(function () {
           Images.remove({_id: image._id});
         }).run();

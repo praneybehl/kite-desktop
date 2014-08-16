@@ -3,8 +3,13 @@ try {
   gui = require('nw.gui');
   gui.App.clearCache();
   win = gui.Window.get();
+<<<<<<< HEAD
   var nativeMenuBar = new gui.Menu({ type: 'menubar' });
   nativeMenuBar.createMacBuiltin('Kitematic');
+=======
+  var nativeMenuBar = new gui.Menu({ type: "menubar" });
+  nativeMenuBar.createMacBuiltin("Kitematic");
+>>>>>>> 6a56d39bb6f6691ce5c74cc2a5588b111f544cd6
   win.menu = nativeMenuBar;
 } catch (e) {
   console.log(e);
@@ -22,9 +27,9 @@ Handlebars.registerHelper('arrayify', function (obj) {
 
 Handlebars.registerHelper('setTitle', function (title) {
   if (title) {
-    document.title = title + ' | Kite';
+    document.title = title + ' | Kitematic';
   } else {
-    document.title = 'Kite';
+    document.title = 'Kitematic';
   }
 });
 
@@ -92,6 +97,8 @@ Meteor.call('getDockerHost', function (err, host) {
 });
 
 Meteor.setInterval(function () {
+  Meteor.call('watchKiteProxy');
+  Meteor.call('watchKiteDNS');
   Meteor.call('watchApps');
   Meteor.call('restartApps');
 }, 5000);

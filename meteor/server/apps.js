@@ -169,9 +169,19 @@ Meteor.methods({
         $set: {
           'config.APP_ID': appId,
           'config.SSH_KEY': sshKey,
+          'config.VIRTUAL_HOST': appObj.name + '.dev',
           path: appPath
         }
       });
+      var image = Images.findOne(appObj.imageId);
+      if (image && image.meta.app && image.meta.app.webPort) {
+        Apps.update(appId, {
+          $set: {
+            'config.VIRTUAL_PORT': image.meta.app.webPort
+          }
+        });
+      }
+      loadKiteVolumes(image.path, appObj.name);
       var app = Apps.findOne(appId);
       runApp(app, function (err, data) {
         if (err) { throw err; }
