@@ -2,6 +2,13 @@ Router.configure({
   layoutTemplate: 'layout'
 });
 
+SetupController = RouteController.extend({
+  layoutTemplate: 'setup_layout',
+  waitOn: function () {
+    return [Meteor.subscribe('apps'), Meteor.subscribe('images')];
+  }
+});
+
 DashboardController = RouteController.extend({
   layoutTemplate: 'dashboard_layout',
   waitOn: function () {
@@ -25,11 +32,19 @@ ImageController = DashboardController.extend({
 
 Router.map(function () {
 
+  this.route('setup', {
+    path: '/setup',
+    controller: 'SetupController',
+    action: function () {
+
+    }
+  });
+
   this.route('dashboard', {
     path: '/',
     controller: 'DashboardController',
     action: function () {
-      this.redirect('dashboard_apps');
+      this.redirect('/Apps');
     }
   });
 
@@ -54,8 +69,18 @@ Router.map(function () {
     }
   });
 
+  this.route('dashboard_images', {
+    path: '/images',
+    controller: 'DashboardController'
+  });
+
   this.route('dashboard_images_logs', {
     path: '/images/:id/logs',
+    controller: 'ImageController'
+  });
+
+  this.route('dashboard_images_settings', {
+    path: '/images/:id/settings',
     controller: 'ImageController'
   });
 
@@ -67,16 +92,6 @@ Router.map(function () {
   this.route('dashboard_apps_settings', {
     path: '/apps/:name/settings',
     controller: 'AppController'
-  });
-
-  this.route('dashboard_images_settings', {
-    path: '/images/:id/settings',
-    controller: 'ImageController'
-  });
-
-  this.route('dashboard_images', {
-    path: '/images',
-    controller: 'DashboardController'
   });
 
   this.route('dashboard_settings', {

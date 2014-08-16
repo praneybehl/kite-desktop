@@ -1,3 +1,0 @@
-[56681:0807/174142:INFO:CONSOLE(1)] ""process.mainModule.filename: /Users/jmorgan/workspace/frontend_opensource/index.html"", source: process_main (1)
-[56681:0807/174142:INFO:CONSOLE(62)] ""Found free port: 57470"", source: file:///Users/jmorgan/workspace/frontend_opensource/index.js (62)
-[56681:0807/174142:INFO:CONSOLE(65)] ""Running production server on port:57470"", source: file:///Users/jmorgan/workspace/frontend_opensource/index.js (65)

@@ -103,7 +103,8 @@ runApp = function (app, callback) {
   docker.createContainer({
     Image: image.docker.Id,
     Tty: false,
-    Env: envParam
+    Env: envParam,
+    Hostname: app.name
   }, function (err, container) {
     if (err) { callback(err, null); }
     console.log('Container created.');

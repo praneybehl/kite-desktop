@@ -6,3 +6,5 @@ dist
 node_modules
 package
 osx-installer/mpkg/Kite.app
+cache
+bin

@@ -1,0 +1,2 @@
+RUN echo 'address=/dev/$DOCKER_HOST' >> /etc/dnsmasq.conf
+dnsmasq -d

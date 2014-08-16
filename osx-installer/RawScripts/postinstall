@@ -1,5 +1,0 @@
-#!/bin/sh
-
-cd /Applications/Kite.app/Contents/Resources/app.nw
-tar -zxf bundle.tar.gz
-rm -rf bundle.tar.gz

@@ -1,7 +1,14 @@
 var exec = require('exec');
+var path = require('path');
+
+boot2dockerexec = function (command, callback) {
+  exec(path.join(getBinDir(), 'boot2docker-1.1.2') + ' ' + command, function(err, stdout) {
+    callback(err, stdout);
+  });
+};
 
 getBoot2DockerState = function (callback) {
-  exec('boot2docker --vm=boot2docker-kite-vm info', function (err, stdout) {
+  boot2dockerexec('--vm=boot2docker-kite-vm info', function (err, stdout) {
     if (err) { callback(err, null); }
     try {
       var info = JSON.parse(stdout);
@@ -13,7 +20,7 @@ getBoot2DockerState = function (callback) {
 };
 
 getBoot2DockerDiskUsage = function (callback) {
-  exec('boot2docker --vm=boot2docker-kite-vm ssh "df"', function (err, stdout) {
+  boot2dockerexec('--vm=boot2docker-kite-vm ssh "df"', function (err, stdout) {
     if (err) { callback(err, null); }
     try {
       var lines = stdout.split('\n');
@@ -39,7 +46,7 @@ getBoot2DockerDiskUsage = function (callback) {
 };
 
 getBoot2DockerMemoryUsage = function (callback) {
-  exec('boot2docker --vm=boot2docker-kite-vm ssh "free -m"', function (err, stdout) {
+  boot2dockerexec('--vm=boot2docker-kite-vm ssh "free -m"', function (err, stdout) {
     if (err) { callback(err, null); }
     try {
       var lines = stdout.split('\n');
@@ -91,25 +98,34 @@ getBoot2DockerInfo = function (callback) {
 };
 
 initBoot2Docker = function (callback) {
-  exec('boot2docker --vm=boot2docker-kite-vm --iso="/usr/local/share/boot2docker/boot2docker-kite.iso" init', function (err, stdout) {
+  var isoPath = path.join(getBinDir(), 'boot2docker-kite-0.0.1.iso');
+  boot2dockerexec('--vm=boot2docker-kite-vm --iso="' + isoPath + '" init', function (err, stdout) {
     if (err) { callback(err, null); }
     callback(null, stdout);
   });
 };
 
 startBoot2Docker = function (callback) {
-  initBoot2Docker(function (err, stdout) {
-    exec('boot2docker --vm=boot2docker-kite-vm up', function (err, stdout) {
-      if (err) {
-        callback(err, null);
-      }
-      callback(null, stdout);
-    });
+  isVirtualBoxInstalled(function (installed) {
+    if (installed) {
+      console.log('Virtualbox installed.. init.');
+      initBoot2Docker(function (err, stdout) {
+        boot2dockerexec('--vm=boot2docker-kite-vm up', function (err, stdout) {
+          if (err) {
+            callback(err, null);
+          }
+          callback(null, stdout);
+        });
+      });
+    } else {
+      console.log('Opening Virtualbox installer.');
+      openVirtualBoxInstaller();
+    }
   });
 };
 
 stopBoot2Docker = function (callback) {
-  exec('boot2docker --vm=boot2docker-kite-vm down', function (err, stdout) {
+  boot2dockerexec('--vm=boot2docker-kite-vm down', function (err, stdout) {
     if (err) { callback(err, null); }
     callback(null, stdout);
   });

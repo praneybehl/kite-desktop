@@ -1,3 +1,5 @@
+var path = require('path');
+
 showFormErrors = function ($form, errors) {
   for (var name in errors) {
     if (errors.hasOwnProperty(name)) {
@@ -20,4 +22,8 @@ clearFormErrors = function ($form) {
 
 resetForm = function ($form) {
   $form.find('input').val('');
+};
+
+getBinDir = function () {
+  return path.join(process.cwd(), 'bin');
 };

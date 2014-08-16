@@ -3,8 +3,8 @@ try {
   gui = require('nw.gui');
   gui.App.clearCache();
   win = gui.Window.get();
-  var nativeMenuBar = new gui.Menu({ type: "menubar" });
-  nativeMenuBar.createMacBuiltin("Kite");
+  var nativeMenuBar = new gui.Menu({ type: 'menubar' });
+  nativeMenuBar.createMacBuiltin('Kitematic');
   win.menu = nativeMenuBar;
 } catch (e) {
   console.log(e);
@@ -53,7 +53,6 @@ Handlebars.registerHelper('timeSince', function (date) {
   return moment(date).fromNow();
 });
 
-
 Handlebars.registerHelper('buildRefDisplay', function (ref) {
   if (ref) {
     var tokens = ref.split('/');
@@ -68,7 +67,7 @@ Handlebars.registerHelper('buildRefDisplay', function (ref) {
     return '';
   }
 });
-
+ß
 Handlebars.registerHelper('getRefType', function (ref) {
   if (ref) {
     var tokens = ref.split('/');

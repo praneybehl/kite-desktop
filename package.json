@@ -23,6 +23,7 @@
   "dependencies": {
     "exec": "^0.1.2",
     "moment": "2.8.1",
-    "open": "0.0.5"
+    "open": "0.0.5",
+    "dockerode": "git+https://github.com/usekite/dockerode.git"
   }
 }
