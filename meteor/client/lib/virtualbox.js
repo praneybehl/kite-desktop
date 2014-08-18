@@ -1,5 +1,4 @@
 var exec = require('exec');
-var open = require('open');
 var path = require('path');
 var fs = require('fs');
 
