@@ -5,14 +5,14 @@ Router.configure({
 SetupController = RouteController.extend({
   layoutTemplate: 'setup_layout',
   waitOn: function () {
-    return [Meteor.subscribe('apps'), Meteor.subscribe('images')];
+    return [Meteor.subscribe('installs')];
   }
 });
 
 DashboardController = RouteController.extend({
   layoutTemplate: 'dashboard_layout',
   waitOn: function () {
-    return [Meteor.subscribe('apps'), Meteor.subscribe('images')];
+    return [Meteor.subscribe('apps'), Meteor.subscribe('images'), Meteor.subscribe('installs')];
   }
 });
 
@@ -32,19 +32,28 @@ ImageController = DashboardController.extend({
 
 Router.map(function () {
 
-  this.route('setup', {
-    path: '/setup',
-    controller: 'SetupController',
-    action: function () {
+  this.route('setup_intro', {
+    path: '/setup/intro',
+    controller: 'SetupController'
+  });
 
-    }
+  this.route('setup_install', {
+    path: '/setup/install',
+    controller: 'SetupController'
   });
 
   this.route('dashboard', {
     path: '/',
     controller: 'DashboardController',
     action: function () {
-      this.redirect('/Apps');
+      var install = Installs.findOne();
+      console.log(install);
+      if (!install) {
+        console.log('No installs detected, running installer again.');
+        this.redirect('/setup/intro');
+      } else {
+        this.redirect('/apps');
+      }
     }
   });
 

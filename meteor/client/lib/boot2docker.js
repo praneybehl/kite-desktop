@@ -1,5 +1,6 @@
 var exec = require('exec');
 var path = require('path');
+var async = require('async');
 
 boot2dockerexec = function (command, callback) {
   exec(path.join(getBinDir(), 'boot2docker-1.1.2') + ' ' + command, function(err, stdout) {
@@ -97,29 +98,47 @@ getBoot2DockerInfo = function (callback) {
   });
 };
 
-initBoot2Docker = function (callback) {
-  var isoPath = path.join(getBinDir(), 'boot2docker-kite-0.0.1.iso');
-  boot2dockerexec('--vm=boot2docker-kite-vm --iso="' + isoPath + '" init', function (err, stdout) {
-    if (err) { callback(err, null); }
-    callback(null, stdout);
+boot2DockerVMExists = function (callback) {
+  boot2dockerexec('--vm=boot2docker-kite-vm info', function (err, stdout) {
+    if (err) { callback(err, false); }
+    callback(null, true);
   });
 };
+
+initBoot2Docker = function (callback) {
+  var isoPath = path.join(getBinDir(), 'boot2docker-kite-0.0.1.iso');
+  isVirtualBoxInstalled(function (installed) {
+    if (installed) {
+      boot2DockerVMExists(function (err, exists) {
+        if (!exists) {
+          boot2dockerexec('--vm=boot2docker-kite-vm --iso="' + isoPath + '" init', function (err, stdout) {
+            callback();
+          });
+        }
+      });
+    } else {
+      callback(new Error('initBoot2Docker called but VirtualBox isn\'t installed.'));
+    }
+  });
+}
 
 startBoot2Docker = function (callback) {
   isVirtualBoxInstalled(function (installed) {
     if (installed) {
-      console.log('Virtualbox installed.. init.');
-      initBoot2Docker(function (err, stdout) {
-        boot2dockerexec('--vm=boot2docker-kite-vm up', function (err, stdout) {
-          if (err) {
-            callback(err, null);
-          }
-          callback(null, stdout);
-        });
+      boot2DockerVMExists(function (err, exists) {
+        if (exists) {
+          boot2dockerexec('--vm=boot2docker-kite-vm up', function (err, stdout) {
+            if (err) {
+              callback(err, null);
+            }
+            callback(null, stdout);
+          });
+        } else {
+          callback(new Error('startBoot2Docker called but boot2docker-kite-vm doesn\'t exist.'));
+        }
       });
     } else {
-      console.log('Opening Virtualbox installer.');
-      openVirtualBoxInstaller();
+      callback(new Error('startBoot2Docker called but VirtualBox isn\'t installed.'));
     }
   });
 };

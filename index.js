@@ -18,6 +18,8 @@ var freeport = function (callback) {
 };
 
 var start = function (callback) {
+  process.env.DOCKER_HOST= 'http://192.168.59.103';
+  process.env.DOCKER_PORT= 2375;
   if (process.env.NODE_ENV === 'development') {
     callback('http://localhost:3000');
   } else {
@@ -49,6 +51,8 @@ var start = function (callback) {
       user_env.ROOT_URL = rootUrl;
       user_env.PORT = port;
       user_env.BIND_IP = '127.0.0.1';
+      user_env.DOCKER_HOST= 'http://192.168.59.103';
+      user_env.DOCKER_PORT= 2375;
       var child = child_process.spawn('./bin/node', ['./bundle/main.js'], {
         env: user_env,
       });

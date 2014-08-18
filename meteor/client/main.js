@@ -10,6 +10,15 @@ try {
   console.log(e);
 }
 
+document.addEventListener('dragover', function(e){
+  e.preventDefault();
+  e.stopPropagation();
+}, false);
+document.addEventListener('drop', function(e){
+  e.preventDefault();
+  e.stopPropagation();
+}, false);
+
 Handlebars.registerHelper('arrayify', function (obj) {
   var result = [];
   if (obj) {
@@ -67,7 +76,7 @@ Handlebars.registerHelper('buildRefDisplay', function (ref) {
     return '';
   }
 });
-ß
+
 Handlebars.registerHelper('getRefType', function (ref) {
   if (ref) {
     var tokens = ref.split('/');

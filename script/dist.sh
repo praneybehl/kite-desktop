@@ -10,6 +10,7 @@ MONGODB_VERSION=mongodb-osx-x86_64-2.6.3
 MONGODB_FILE=$MONGODB_VERSION.tgz
 NODE_JS_VERSION=node-v0.10.29-darwin-x64
 NODEJS_FILE=$NODE_JS_VERSION.tar.gz
+COCOASUDO_FILE=cocoasudo
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/colors.sh
@@ -83,8 +84,10 @@ cp bin/$BASE_IMAGE_FILE dist/osx/Kitematic.app/Contents/Resources/app.nw/bin/
 cp bin/$BOOT2DOCKER_ISO_FILE dist/osx/Kitematic.app/Contents/Resources/app.nw/bin/
 cp bin/$VIRTUALBOX_FILE dist/osx/Kitematic.app/Contents/Resources/app.nw/bin/
 cp bin/$BOOT2DOCKER_ISO_FILE dist/osx/Kitematic.app/Contents/Resources/app.nw/bin/
+cp bin/$COCOASUDO_FILE dist/osx/Kitematic.app/Contents/Resources/app.nw/bin/
 cp bin/$BOOT2DOCKER_CLI_FILE dist/osx/Kitematic.app/Contents/Resources/app.nw/bin/
-chmod +x bin/$BOOT2DOCKER_CLI_FILE dist/osx/Kitematic.app/Contents/Resources/app.nw/bin/$BOOT2DOCKER_CLI_FILE
+chmod +x dist/osx/Kitematic.app/Contents/Resources/app.nw/bin/$BOOT2DOCKER_CLI_FILE
+chmod +x dist/osx/Kitematic.app/Contents/Resources/app.nw/bin/$COCOASUDO_FILE
 
 pushd bin
 cecho "-----> Extracting node binary into Kitematic.app" $blue

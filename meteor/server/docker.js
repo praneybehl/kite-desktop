@@ -151,6 +151,7 @@ runApp = function (app, callback) {
 
 buildImage = function (image, callback) {
   var TAR_PATH = path.join(KITE_TAR_PATH, image._id + '.tar');
+  console.log('tar czf ' + TAR_PATH + ' -C ' + image.path + ' .');
   exec('tar czf ' + TAR_PATH + ' -C ' + image.path + ' .', function (err) {
     if (err) { throw err; }
     console.log('Compressed extracted folder.');

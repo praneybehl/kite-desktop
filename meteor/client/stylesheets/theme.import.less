@@ -14,6 +14,14 @@ html, body {
   .no-select();
 }
 
+html, body, div, span, object,
+form, input, h1, h2, button, label, a, img {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  /* this will work for QtWebKit in future */
+  -webkit-user-drag: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   font-weight: 300;

@@ -27,3 +27,7 @@ resetForm = function ($form) {
 getBinDir = function () {
   return path.join(process.cwd(), 'bin');
 };
+
+getHomePath = function () {
+  return process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
+};
