@@ -39,6 +39,50 @@ inspectContainer = function (containerId, callback) {
   });
 };
 
+pullImageFromDockerfile = function (dockerfile, imageId, callback) {
+  var patternString = "(FROM)(.*)";
+  var regex = new RegExp(patternString, "g");
+  var fromInstruction = dockerfile.match(regex);
+  if (fromInstruction && fromInstruction.length > 0) {
+    var fromImage = fromInstruction[0].split(' ')[1].trim();
+    console.log(fromImage);
+    Fiber(function () {
+      Images.update(imageId, {
+        $set: {
+          buildLogs: []
+        }
+      });
+    }).run();
+    var logs = [];
+    docker.pull(fromImage, function (err, response) {
+      if (err) { callback(err, null); }
+      response.setEncoding('utf8');
+      response.on('data', function (data) {
+        try {
+          var logData = JSON.parse(data);
+          var logDisplay = logData.id + ' | ' + logData.status;
+          if (logData.progressDetail.current && logData.progressDetail.total) {
+            logDisplay += ' - ' + Math.round(logData.progressDetail.current / logData.progressDetail.total * 100) + '%';
+          }
+          logs.push(logDisplay);
+          Fiber(function () {
+            Images.update(imageId, {
+              $set: {
+                buildLogs: logs
+              }
+            });
+          }).run();
+        } catch (e) {
+          console.log(e);
+        }
+      });
+      response.on('end', function () {
+        callback(null, {});
+      });
+    });
+  }
+};
+
 restartApp = function (app, callback) {
   if (app.docker && app.docker.Id) {
     var container = docker.getContainer(app.docker.Id);

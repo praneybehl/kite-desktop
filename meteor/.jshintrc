@@ -186,6 +186,7 @@
       "getBinDir": true,
       "isVirtualBoxInstalled": true,
       "openVirtualBoxInstaller": true,
+      "pullImageFromDockerfile": true,
 
       // Forms
       "showFormErrors": true,

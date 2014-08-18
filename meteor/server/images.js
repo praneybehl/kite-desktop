@@ -17,7 +17,6 @@ Meteor.methods({
       };
     }
     var imageId = Images.insert(imageObj);
-    saveImageFolder(directory, imageId);
     var imagePath = path.join(KITE_IMAGES_PATH, imageId);
     Images.update(imageId, {
       $set: {
@@ -32,16 +31,22 @@ Meteor.methods({
       });
     }
     var image = Images.findOne(imageId);
-    buildImage(image, function (err, data) {
-      if (err) { console.log(err); }
-      Fiber(function () {
-        Images.update(imageId, {
-          $set: {
-            docker: data,
-            status: 'READY'
-          }
+    saveImageFolder(directory, imageId, function (err) {
+      if (err) { throw err; }
+      pullImageFromDockerfile(fs.readFileSync(path.join(image.path, 'Dockerfile'), 'utf8'), imageId, function (err) {
+        if (err) { throw err; }
+        buildImage(image, function (err, data) {
+          if (err) { console.log(err); }
+          Fiber(function () {
+            Images.update(imageId, {
+              $set: {
+                docker: data,
+                status: 'READY'
+              }
+            });
+          }).run();
         });
-      }).run();
+      });
     });
   },
   validateDirectory: function (directory) {

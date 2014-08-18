@@ -1,5 +1,5 @@
 {
-  "dockerode": "2.0.1",
+  "dockerode": "2.0.2",
   "tar": "0.1.20",
   "ssh-keygen": "0.2.1",
   "ncp": "0.6.0",

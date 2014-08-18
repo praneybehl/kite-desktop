@@ -46,17 +46,18 @@ loadKiteVolumes = function (directory, appName) {
   }
 };
 
-saveImageFolder = function (directory, imageId) {
+saveImageFolder = function (directory, imageId, callback) {
   var destinationPath = path.join(KITE_IMAGES_PATH, imageId);
   if (!fs.existsSync(destinationPath)) {
     fs.mkdirSync(destinationPath, function (err) {
-      if (err) { throw err; }
+      if (err) { callback(err); }
     });
     ncp(directory, destinationPath, function (err) {
       if (err) {
         return console.error(err);
       }
       console.log('Copied image folder for: ' + imageId);
+      callback(null);
     });
   }
 };
