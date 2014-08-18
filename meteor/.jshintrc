@@ -154,6 +154,7 @@
       "DashboardController": true,
       "AppController": true,
       "ImageController": true,
+      "SetupController": true,
 
       // Server and Client
       "deleteApp": true,
@@ -181,6 +182,10 @@
       "watchKiteDNS": true,
       "loadKiteVolumes": true,
       "saveImageFolder": true,
+      "boot2dockerexec": true,
+      "getBinDir": true,
+      "isVirtualBoxInstalled": true,
+      "openVirtualBoxInstaller": true,
 
       // Forms
       "showFormErrors": true,

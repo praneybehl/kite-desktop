@@ -1,5 +1,8 @@
 Docker = Meteor.require('dockerode');
 
+var Convert = Meteor.require('ansi-to-html');
+var convert = new Convert();
+
 var docker = new Docker({socketPath: '/var/run/docker.sock'});
 if (process.env.DOCKER_HOST && process.env.DOCKER_PORT) {
   docker = new Docker({host: process.env.DOCKER_HOST, port: process.env.DOCKER_PORT});
@@ -77,7 +80,7 @@ getAppLogs = function (app) {
       var logs = [];
       response.setEncoding('utf8');
       response.on('data', function (line) {
-        logs.push(line.slice(8));
+        logs.push(convert.toHtml(line.slice(8)));
         Fiber(function () {
           Apps.update(app._id, {
             $set: {
@@ -173,7 +176,7 @@ buildImage = function (image, callback) {
       response.on('data', function (data) {
         try {
           var line = JSON.parse(data).stream;
-          logs.push(line);
+          logs.push(convert.toHtml(line));
           Fiber(function () {
             Images.update(image._id, {
               $set: {

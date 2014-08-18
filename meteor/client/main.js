@@ -67,7 +67,7 @@ Handlebars.registerHelper('buildRefDisplay', function (ref) {
     return '';
   }
 });
-ß
+
 Handlebars.registerHelper('getRefType', function (ref) {
   if (ref) {
     var tokens = ref.split('/');

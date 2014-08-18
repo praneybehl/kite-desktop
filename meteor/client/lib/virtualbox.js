@@ -1,9 +1,8 @@
 var exec = require('exec');
-var open = require('open');
 var path = require('path');
 
 isVirtualBoxInstalled = function (callback) {
-  exec('VBoxManage', function (err, stdout) {
+  exec('VBoxManage', function (err) {
     if (err) {
       callback(false);
     } else {

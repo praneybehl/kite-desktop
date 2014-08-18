@@ -109,7 +109,8 @@ startBoot2Docker = function (callback) {
   isVirtualBoxInstalled(function (installed) {
     if (installed) {
       console.log('Virtualbox installed.. init.');
-      initBoot2Docker(function (err, stdout) {
+      initBoot2Docker(function (err) {
+        if (err) { console.log(err); }
         boot2dockerexec('--vm=boot2docker-kite-vm up', function (err, stdout) {
           if (err) {
             callback(err, null);
